@@ -1,0 +1,43 @@
+<section class="vh-100 bg-image"
+  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an Account</h2>
+              <form [formGroup]="signupForm" (ngSubmit)="signup()">
+                <div class="form-outline mb-4">
+                  <input type="email" id="form3Example3cg" class="form-control form-control-lg"
+                    formControlName="email" />
+                  <label class="form-label" for="form3Example3cg">Your Email</label>
+                  <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+                    <div *ngIf="f.email.errors.required">Email is required.</div>
+                    <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+                  </div>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="password" id="form3Example4cg" class="form-control form-control-lg"
+                    formControlName="password" />
+                  <label class="form-label" for="form3Example4cg">Password</label>
+                  <div *ngIf="f.password.touched && f.email.invalid" class="alert alert-danger">
+                    <div *ngIf="f.password.errors.required">password is required.</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 3 characters</div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                    [disabled]="!signupForm.valid">Sign Up</button>
+                </div>
+                <p class="text-center text-muted mt-5 mb-0">Have already an account?
+                  <a [routerLink]="['login']" class="fw-bold text-body"><u>Login here</u></a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

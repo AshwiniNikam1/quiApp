@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "648a62fb-a17a-455d-aa66-9f86b7bc60f6"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "demoquiz": {
+    "quizApplication": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/demoquiz",
+            "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -27,6 +30,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -68,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "demoquiz:build:production"
+              "browserTarget": "quizApplication:build:production"
             },
             "development": {
-              "browserTarget": "demoquiz:build:development"
+              "browserTarget": "quizApplication:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "demoquiz:build"
+            "browserTarget": "quizApplication:build"
           }
         },
         "test": {
@@ -94,13 +98,21 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "/node_modules/bootstrap/dist/css/bootstrap.css",
+              "/node_modules/font-awesome/css/font-awesome.css"
+  
             ],
-            "scripts": []
+            "scripts": [
+              
+            ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
   },
-  "defaultProject": "demoquiz"
+  "defaultProject": "quizApplication"
 }

@@ -1,0 +1,81 @@
+<app-header></app-header>
+<div class="container mt-5">
+    <div class="card">
+        <div class="d-flex justify-content-between p-3">
+            <div class="image">
+                <img src="assets/images/qlogo.jpg" alt="" width="60" height="50">
+            </div>
+            <div class="quiz-header">
+                <h4 style="font-family: cursive;">Angular and typescript quiz</h4>
+                <span style="font-style: italic;">Welcome, {{name |titlecase}}</span>
+            </div>
+        </div>
+        <ng-container *ngIf="!isQuizCompleted">
+            <div class="d-flex justify-content-around py-3">
+                <div class="score">
+                    <h5>{{points}} points</h5>
+                </div>
+                <div class="question-remain">
+                    <span style="font-style: italic;">Question {{currentQuestion+1}} of {{reshufflequeList.length}}</span>
+                </div>
+            </div>
+
+            <div class="questions">
+                <div class="card">
+                    <!-- currentQuestion : hold current question value -->
+                    <h3>{{reshufflequeList[currentQuestion]?.id}}.{{reshufflequeList[currentQuestion]?.questionText}}</h3>
+                </div>
+            </div>
+            <!-- <div class="options">
+                <div *ngFor="let q of queList[currentQuestion]?.options;index as i">
+                    <div class="card" (click)="answer1(q)" [ngClass]="[q.selected?'is-green':'is-red']">
+                        {{i+1}}.{{q.text}}</div>
+                    <div>
+                    </div>
+            </div> -->
+
+            <div class="options">
+                <ol *ngFor="let q of reshufflequeList[currentQuestion]?.options;index as i">
+                    <span (click)="answer(currentQuestion+1,q)">
+                        <div appChangeBg [isCorrect]="q.correct" class="card">{{i+1}}.{{q.text}}</div>
+
+                    </span>
+                </ol>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button class="btn" [disabled]="currentQuestion===0"><i class="fa-solid fa-chevron-left">
+                    </i>Prev</button>
+                <button class="btn" (click)="nextQuestion(content)"><i
+                        class="fa-solid fa-chevron-right"></i>Next</button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="isQuizCompleted">
+            <div class="row d-flex justify-content-between">
+                <img src="assets/images/congrats.png" alt="" style="width:300px" class="img-fluid col-sm-12 mx-auto">
+                <div class="result text-center col-md-6 col-sm-12">
+                    <h3>Congratulations !! <br> You have completed the quiz.
+                        <br> Below the result:
+                    </h3>
+                    <p>Total questions attempted:{{reshufflequeList.length}}</p>
+                    <p>Total correct answered:{{correctAnswer}}</p>
+                    <p>Total wrong answered: {{wrongAnswer}}</p>
+                    <p>Your Score:{{points}} points</p>
+                </div>
+            </div>
+            <button class="btn btn-info" (click)="goBack()">Back</button>
+          <button class="btn btn-primary" routerLink="/reshuffle">Restart Game</button> 
+            <!-- <button class="btn btn-primary" (click)="shuffleQuestion($event)">Restart Game</button> -->
+        </ng-container>
+
+    </div>
+</div>
+<ng-template #content let-modal>
+
+    <div class="modal-body">
+        <p>Are you sure you want to submit quiz?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">NO</button>
+        <button type="button" class="btn btn-light" (click)="quizCompleted()">YES</button>
+    </div>
+</ng-template>

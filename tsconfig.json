@@ -7,8 +7,21 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": false,
+    
+    "noImplicitReturns": false,
+    "strictNullChecks":false,
+    "strictPropertyInitialization": false,
+
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "alwaysStrict": true,
+      "strictFunctionTypes": true,
+
+
+
+
+
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
